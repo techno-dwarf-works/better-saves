@@ -1,6 +1,6 @@
 {
     "name": "BetterSaves.Editor",
-    "rootNamespace": "Better.Saves",
+    "rootNamespace": "Better.Saves.EditorAddons",
     "references": [
         "GUID:f867b7c72846e834c862bcb8568dc881",
         "GUID:a59e3daedde9ca94bba45364d4ead25f",
