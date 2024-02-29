@@ -6,7 +6,7 @@
   "description": " ",
   "dependencies": {
     "com.tdw.better.internal.core": "0.0.2",
-    "com.uurha.bettereditortools": "1.0.69"
+    "com.tdw.better.projectsettings": "0.0.1"
   },
   "author": {
     "name": "Better Plugins",
