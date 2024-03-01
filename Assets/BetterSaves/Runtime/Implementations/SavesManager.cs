@@ -15,6 +15,18 @@ namespace Better.Saves.Runtime
 
         #region ISaveSystem
 
+        public event ISaveSystem.OnItemsCleared AllCleared
+        {
+            add => _internalSystem.AllCleared += value;
+            remove => _internalSystem.AllCleared -= value;
+        }
+
+        public event ISaveSystem.OnItemCleared ItemCleared
+        {
+            add => _internalSystem.ItemCleared += value;
+            remove => _internalSystem.ItemCleared -= value;
+        }
+
         public bool Has<T>(string key) => _internalSystem.Has<T>(key);
         public bool Has<T>() => _internalSystem.Has<T>();
         public T Load<T>(string key, T defaultValue = default) => _internalSystem.Load(key, defaultValue);

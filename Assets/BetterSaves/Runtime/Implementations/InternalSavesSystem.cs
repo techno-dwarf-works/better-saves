@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -32,6 +33,9 @@ namespace Better.Saves.Runtime
         }
 
         #region ISaveSystem
+
+        public event ISaveSystem.OnItemsCleared AllCleared;
+        public event ISaveSystem.OnItemCleared ItemCleared;
 
         public bool Has<T>(string key)
         {
@@ -106,6 +110,7 @@ namespace Better.Saves.Runtime
 
             var filePath = GetFilePath<T>(key);
             File.Delete(filePath);
+            ItemCleared?.Invoke(key);
             return true;
         }
 
@@ -118,11 +123,12 @@ namespace Better.Saves.Runtime
         public void DeleteAll()
         {
             var files = Directory.GetFiles(_folderPath);
-
             for (var i = 0; i < files.Length; i++)
             {
                 File.Delete(files[i]);
             }
+
+            AllCleared?.Invoke();
         }
 
         #endregion
