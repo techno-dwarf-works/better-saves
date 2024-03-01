@@ -1,6 +1,6 @@
 {
     "name": "BetterSaves.Runtime",
-    "rootNamespace": "Better.Saves",
+    "rootNamespace": "Better.Saves.Runtime",
     "references": [
         "GUID:01df13aca8d01e24a911bcc3e8277031",
         "GUID:1862b35041b066d42ab4d3caf773657b",
