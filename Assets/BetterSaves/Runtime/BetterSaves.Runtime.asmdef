@@ -2,7 +2,8 @@
     "name": "BetterSaves.Runtime",
     "rootNamespace": "Better.Saves",
     "references": [
-        "GUID:a59e3daedde9ca94bba45364d4ead25f",
+        "GUID:01df13aca8d01e24a911bcc3e8277031",
+        "GUID:1862b35041b066d42ab4d3caf773657b",
         "GUID:443314a5a4e67c14a88ae223776b6554",
         "GUID:1c5574afb40e5fe4ca9e9c156009297b",
         "GUID:d103b3c6d6cb0564d8d6543e9d797878",
@@ -30,6 +31,11 @@
             "name": "com.tdw.better.singletons",
             "expression": "0.0.2",
             "define": "BETTER_SINGLETONS"
+        },
+        {
+            "name": "com.uurha.betterdatastructures",
+            "expression": "0.1.7",
+            "define": "BETTER_DATA_STRUCTURES"
         }
     ],
     "noEngineReferences": false

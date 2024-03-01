@@ -63,7 +63,7 @@ namespace Better.Saves.Runtime.Utility
             var isInvalid = string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value);
             if (isInvalid && logException)
             {
-                var message = $"[{nameof(SavesUtility)}] {nameof(ValidateKey)}: invalid {nameof(value)}({value})";
+                var message = $"Invalid {nameof(value)}({value})";
                 var exception = new ArgumentException(message);
                 Debug.LogException(exception);
             }
@@ -76,7 +76,7 @@ namespace Better.Saves.Runtime.Utility
             var isValid = type.IsSerializable;
             if (!isValid && logException)
             {
-                var message = $"[{nameof(SavesUtility)}] {nameof(ValidateType)}: invalid {nameof(type)}({type.Name})";
+                var message = $"Invalid {nameof(type)}({type.Name})";
                 var exception = new ArgumentException(message);
                 Debug.LogException(exception);
             }

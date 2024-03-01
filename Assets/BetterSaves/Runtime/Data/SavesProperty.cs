@@ -1,5 +1,6 @@
+#if BETTER_DATA_STRUCTURES
 using System;
-using Better.DataStructures.Properties;
+using Better.DataStructures.Runtime.Properties;
 using Better.Saves.Runtime.Interfaces;
 using Better.Saves.Runtime.Utility;
 using UnityEngine;
@@ -23,10 +24,10 @@ namespace Better.Saves.Runtime.Data
             if (!SavesUtility.ValidateKey(key))
             {
                 key = typeof(T).Name;
-                var message = $"[{nameof(SavesProperty<T>)}] {nameof(SavesProperty<T>)}: {nameof(key)} auto-replace to \"{key}\"";
+                var message = $"{nameof(key)} auto-replaced to \"{key}\"";
                 Debug.LogWarning(message);
             }
-            
+
             _key = key;
             _saveSystem = saveSystem;
             _value = _saveSystem.Load(_key, defaultValue);
@@ -44,3 +45,4 @@ namespace Better.Saves.Runtime.Data
         }
     }
 }
+#endif

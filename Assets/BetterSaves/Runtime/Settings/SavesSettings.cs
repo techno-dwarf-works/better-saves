@@ -1,15 +1,17 @@
 using System.IO;
-using Better.Tools.Runtime;
-using Better.Tools.Runtime.Settings;
+using Better.Internal.Core.Runtime;
+using Better.ProjectSettings.Runtime;
+using Better.Singletons.Runtime.Attributes;
 using UnityEditor;
 using UnityEngine;
 
 namespace Better.Saves.Runtime.Settings
 {
-    public class SavesSettings : ProjectSettings
+    [ScriptableCreate(PrefixConstants.BetterPrefix + "/" + nameof(Saves))]
+    public class SavesSettings : ScriptableSettings<SavesSettings>
     {
         public const string KeySeparator = "-";
-        private const string DefaultFolderName = BetterEditorDefines.BetterPrefix + nameof(Saves);
+        private const string DefaultFolderName = PrefixConstants.BetterPrefix + nameof(Saves);
 
         [SerializeField] private string _folderName = DefaultFolderName;
 
