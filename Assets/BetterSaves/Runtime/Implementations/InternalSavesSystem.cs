@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -25,6 +24,8 @@ namespace Better.Saves.Runtime
 
             _folderPath = _settings.GetFolderPath();
             _formatter = formatter;
+            
+            EnsureFolder();
         }
 
         // TODO: GH-2 (Newtonsoft formatter dependency)
@@ -142,6 +143,14 @@ namespace Better.Saves.Runtime
             var fileName = key + typeExtension;
 
             return Path.Combine(_folderPath, fileName);
+        }
+        
+        private void EnsureFolder()
+        {
+            if (!Directory.Exists(_folderPath))
+            {
+                Directory.CreateDirectory(_folderPath);
+            }
         }
     }
 }
