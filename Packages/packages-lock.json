@@ -7,6 +7,17 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.tdw.better.locator": {
+      "version": "0.0.7",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.tdw.better.internal.core": "0.0.2",
+        "com.uurha.betterextensions": "1.5.94",
+        "com.uurha.betterattributes": "3.0.11"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.tdw.better.projectsettings": {
       "version": "0.0.1",
       "depth": 0,
@@ -16,6 +27,13 @@
         "com.uurha.betterextensions": "1.5.3",
         "com.tdw.better.internal.core": "0.0.2"
       },
+      "url": "https://package.openupm.com"
+    },
+    "com.tdw.better.services": {
+      "version": "0.0.4",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://package.openupm.com"
     },
     "com.tdw.better.singletons": {
@@ -163,8 +181,38 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.uurha.betterattributes": {
+      "version": "3.0.11",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.uurha.bettereditortools": "1.5.23",
+        "com.tdw.better.internal.core": "0.0.2"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.uurha.betterdatastructures": {
+      "version": "0.1.7",
+      "depth": 3,
+      "source": "registry",
+      "dependencies": {
+        "com.tdw.better.internal.core": "0.0.2"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.uurha.bettereditortools": {
+      "version": "1.5.23",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "com.uurha.betterdatastructures": "0.1.7",
+        "com.uurha.betterextensions": "1.5.94",
+        "com.tdw.better.internal.core": "0.0.2"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.uurha.betterextensions": {
-      "version": "1.5.3",
+      "version": "1.5.94",
       "depth": 1,
       "source": "registry",
       "dependencies": {

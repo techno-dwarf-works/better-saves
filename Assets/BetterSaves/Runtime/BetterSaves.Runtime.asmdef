@@ -24,7 +24,7 @@
         },
         {
             "name": "com.tdw.better.locator",
-            "expression": "0.0.4",
+            "expression": "0.0.7",
             "define": "BETTER_LOCATOR"
         },
         {
