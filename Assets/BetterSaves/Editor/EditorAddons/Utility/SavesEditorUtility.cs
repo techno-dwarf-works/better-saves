@@ -1,6 +1,4 @@
 using System.IO;
-using Better.EditorTools.SettingsTools;
-using Better.Saves.Runtime;
 using Better.Saves.Runtime.Settings;
 using UnityEditor;
 using UnityEngine;
@@ -17,7 +15,7 @@ namespace Better.Saves.EditorAddons.Utility
                     "Yes",
                     "No"))
             {
-                var settings = ProjectSettingsToolsContainer<SavesSettings>.Instance;
+                var settings = SavesSettings.Instance;
                 var folderPath = settings.GetFolderPath();
 
                 Directory.Delete(folderPath, true);
