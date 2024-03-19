@@ -1,46 +1,35 @@
 using System.IO;
-using Better.EditorTools.SettingsTools;
+using Better.Internal.Core.Runtime;
+using Better.ProjectSettings.EditorAddons;
 using Better.Saves.EditorAddons.Utility;
-using Better.Saves.Runtime;
 using Better.Saves.Runtime.Settings;
-using Better.Tools.Runtime;
 using UnityEditor;
 
 namespace Better.Saves.EditorAddons.Settings
 {
-    internal class SavesSettingsProvider : ProjectSettingsProvider<SavesSettings>
+    internal class SavesSettingsProvider : DefaultProjectSettingsProvider<SavesSettings>
     {
-        private readonly Editor _editor;
-
-        public SavesSettingsProvider()
-            : base(ProjectSettingsToolsContainer<SavesSettingsTool>.Instance, SettingsScope.Project)
+        public SavesSettingsProvider() : base(SavesSettings.SettingsPath)
         {
-            _editor = Editor.CreateEditor(_settings);
         }
-
-        protected override void DrawGUI()
-        {
-            _editor.OnInspectorGUI();
-        }
-
-        [MenuItem(SavesSettingsTool.MenuItemPrefix + "/" + BetterEditorDefines.HighlightPrefix, false, 999)]
+        
+        [MenuItem(SavesSettings.SettingsPath + "/" + PrefixConstants.HighlightPrefix, false, 999)]
         private static void HighlightSettings()
         {
-            var settingsPath = ProjectSettingsToolsContainer<SavesSettingsTool>.Instance.ProjectSettingKey;
-            SettingsService.OpenProjectSettings(settingsPath);
+            SettingsService.OpenProjectSettings(ProjectPath + SavesSettings.SettingsPath);
         }
 
-        [MenuItem(SavesSettingsTool.MenuItemPrefix + "/Show In Explorer")]
+        [MenuItem(SavesSettings.SettingsPath + "/Show In Explorer")]
         private static void ShowInExplorer()
         {
-            var settings = ProjectSettingsToolsContainer<SavesSettings>.Instance;
+            var settings = SavesSettings.Instance;
             var folderPath = settings.GetFolderPath();
 
             Directory.CreateDirectory(folderPath);
             EditorUtility.OpenWithDefaultApp(folderPath);
         }
 
-        [MenuItem(SavesSettingsTool.MenuItemPrefix + "/Clear All")]
+        [MenuItem(SavesSettings.SettingsPath + "/Clear All")]
         private static void ClearAll()
         {
             SavesEditorUtility.ClearAll();

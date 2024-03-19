@@ -1,12 +1,13 @@
 {
     "name": "BetterSaves.Runtime",
-    "rootNamespace": "Better.Saves",
+    "rootNamespace": "Better.Saves.Runtime",
     "references": [
-        "GUID:a59e3daedde9ca94bba45364d4ead25f",
         "GUID:443314a5a4e67c14a88ae223776b6554",
         "GUID:1c5574afb40e5fe4ca9e9c156009297b",
         "GUID:d103b3c6d6cb0564d8d6543e9d797878",
-        "GUID:af7fffdf1d83bc842b0f6e3a01efda16"
+        "GUID:af7fffdf1d83bc842b0f6e3a01efda16",
+        "GUID:01df13aca8d01e24a911bcc3e8277031",
+        "GUID:1862b35041b066d42ab4d3caf773657b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

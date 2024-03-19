@@ -1,5 +1,5 @@
 using System;
-using Better.DataStructures.Properties;
+using Better.DataStructures.Runtime.Properties;
 using Better.Saves.Runtime.Interfaces;
 using Better.Saves.Runtime.Utility;
 using UnityEngine;
