@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -25,6 +24,8 @@ namespace Better.Saves.Runtime
 
             _folderPath = _settings.GetFolderPath();
             _formatter = formatter;
+            
+            EnsureFolder();
         }
 
         // TODO: GH-2 (Newtonsoft formatter dependency)
@@ -33,6 +34,9 @@ namespace Better.Saves.Runtime
         }
 
         #region ISaveSystem
+
+        public event ISaveSystem.OnItemsCleared AllCleared;
+        public event ISaveSystem.OnItemCleared ItemCleared;
 
         public bool Has<T>(string key)
         {
@@ -107,6 +111,7 @@ namespace Better.Saves.Runtime
 
             var filePath = GetFilePath<T>(key);
             File.Delete(filePath);
+            ItemCleared?.Invoke(key);
             return true;
         }
 
@@ -119,11 +124,12 @@ namespace Better.Saves.Runtime
         public void DeleteAll()
         {
             var files = Directory.GetFiles(_folderPath);
-
             for (var i = 0; i < files.Length; i++)
             {
                 File.Delete(files[i]);
             }
+
+            AllCleared?.Invoke();
         }
 
         #endregion
@@ -137,6 +143,14 @@ namespace Better.Saves.Runtime
             var fileName = key + typeExtension;
 
             return Path.Combine(_folderPath, fileName);
+        }
+        
+        private void EnsureFolder()
+        {
+            if (!Directory.Exists(_folderPath))
+            {
+                Directory.CreateDirectory(_folderPath);
+            }
         }
     }
 }

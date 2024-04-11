@@ -2,6 +2,12 @@ namespace Better.Saves.Runtime.Interfaces
 {
     public interface ISaveSystem
     {
+        public delegate void OnItemsCleared();
+        public delegate void OnItemCleared(string key);
+
+        public event OnItemsCleared AllCleared;
+        public event OnItemCleared ItemCleared;
+
         /// <summary>
         /// Checks if a specific key exists for the specified type.
         /// </summary>
