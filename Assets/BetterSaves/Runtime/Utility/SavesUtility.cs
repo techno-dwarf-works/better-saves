@@ -9,8 +9,8 @@ namespace Better.Saves.Runtime.Utility
     {
         public static ISaveSystem GetSystem()
         {
-#if BETTER_SERVICES && BETTER_LOCATOR
-            return Locators.Runtime.ServiceLocator.GetService<SavesService>();
+#if BETTER_SERVICES && BETTER_LOCATORS
+            return Locators.Runtime.ServiceLocator.Get<SavesService>();
 #elif BETTER_SINGLETONS
             return SavesManager.Instance;
 #endif
