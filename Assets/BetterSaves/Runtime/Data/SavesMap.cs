@@ -73,7 +73,7 @@ namespace Better.Saves.Runtime.Data
         {
             if (ReferenceEquals(tuple, null))
             {
-                var message = $"[{nameof(SavesMap<TItem>)}] {nameof(Save)}: {nameof(tuple)} cannot be null";
+                var message = $"{nameof(tuple)} cannot be null";
                 var exception = new ArgumentNullException(message);
                 Debug.LogException(exception);
                 return;
@@ -175,7 +175,7 @@ namespace Better.Saves.Runtime.Data
             var isInvalid = string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id);
             if (isInvalid && logException)
             {
-                var message = $"[{nameof(SavesMap<TItem>)}] {nameof(ValidateItemId)}: invalid {nameof(id)}({id})";
+                var message = $"Invalid {nameof(id)}({id})";
                 var exception = new ArgumentException(message);
                 Debug.LogException(exception);
             }
@@ -188,7 +188,7 @@ namespace Better.Saves.Runtime.Data
             var isInvalid = ReferenceEquals(item, null);
             if (isInvalid && logException)
             {
-                var message = $"[{nameof(SavesMap<TItem>)}] {nameof(ValidateItem)}: invalid {nameof(item)}";
+                var message = $"Invalid {nameof(item)}";
                 var exception = new ArgumentException(message);
                 Debug.LogException(exception);
             }

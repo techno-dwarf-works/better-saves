@@ -8,6 +8,8 @@ namespace Better.Saves.Runtime.Data
 {
     public class SavesProperty<T> : ReactiveProperty<T>
     {
+        public event Action Cleared;
+
         private readonly ISaveSystem _saveSystem;
         private readonly string _key;
 
@@ -23,13 +25,16 @@ namespace Better.Saves.Runtime.Data
             if (!SavesUtility.ValidateKey(key))
             {
                 key = typeof(T).Name;
-                var message = $"[{nameof(SavesProperty<T>)}] {nameof(SavesProperty<T>)}: {nameof(key)} auto-replace to \"{key}\"";
+                var message = $"{nameof(key)} auto-replaced to \"{key}\"";
                 Debug.LogWarning(message);
             }
-            
+
             _key = key;
             _saveSystem = saveSystem;
             _value = _saveSystem.Load(_key, defaultValue);
+
+            _saveSystem.ItemCleared += OnSaveCleared;
+            _saveSystem.AllCleared += OnSavesCleared;
         }
 
         public SavesProperty(string key, T defaultValue = default)
@@ -41,6 +46,31 @@ namespace Better.Saves.Runtime.Data
         {
             _saveSystem.Save(_key, Value);
             base.SetDirty();
+        }
+
+        private void OnSaveCleared(string key)
+        {
+            if (key == _key)
+            {
+                ClearValue();
+            }
+        }
+
+        private void OnSavesCleared()
+        {
+            ClearValue();
+        }
+
+        private void ClearValue()
+        {
+            _value = default(T);
+            Cleared?.Invoke();
+        }
+
+        ~SavesProperty()
+        {
+            _saveSystem.ItemCleared -= OnSaveCleared;
+            _saveSystem.AllCleared -= OnSavesCleared;
         }
     }
 }

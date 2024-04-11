@@ -7,11 +7,20 @@ namespace Better.Saves.Runtime.Utility
 {
     public static class SavesUtility
     {
+#if BETTER_SERVICES && BETTER_LOCATORS
+        private static readonly Locators.Runtime.ServiceProperty<SavesService> _serviceProperty = new();
+#endif
+
         public static ISaveSystem GetSystem()
         {
 #if BETTER_SERVICES && BETTER_LOCATORS
-            return Locators.Runtime.ServiceLocator.Get<SavesService>();
-#elif BETTER_SINGLETONS
+            if (_serviceProperty.IsRegistered)
+            {
+                return _serviceProperty.CachedService;
+            }
+#endif
+
+#if BETTER_SINGLETONS
             return SavesManager.Instance;
 #endif
 
@@ -43,11 +52,27 @@ namespace Better.Saves.Runtime.Utility
 
         public static string GetKeyByType(Type type)
         {
+            if (type == null)
+            {
+                var exception = new ArgumentNullException(nameof(type));
+                Debug.LogException(exception);
+
+                return string.Empty;
+            }
+
             return type.ToString();
         }
 
         public static string GetKeyByType(object target)
         {
+            if (target == null)
+            {
+                var exception = new ArgumentNullException(nameof(target));
+                Debug.LogException(exception);
+
+                return string.Empty;
+            }
+
             var type = target.GetType();
             return GetKeyByType(type);
         }
@@ -63,7 +88,7 @@ namespace Better.Saves.Runtime.Utility
             var isInvalid = string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value);
             if (isInvalid && logException)
             {
-                var message = $"[{nameof(SavesUtility)}] {nameof(ValidateKey)}: invalid {nameof(value)}({value})";
+                var message = $"Invalid {nameof(value)}({value})";
                 var exception = new ArgumentException(message);
                 Debug.LogException(exception);
             }
@@ -76,7 +101,7 @@ namespace Better.Saves.Runtime.Utility
             var isValid = type.IsSerializable;
             if (!isValid && logException)
             {
-                var message = $"[{nameof(SavesUtility)}] {nameof(ValidateType)}: invalid {nameof(type)}({type.Name})";
+                var message = $"Invalid {nameof(type)}({type.Name})";
                 var exception = new ArgumentException(message);
                 Debug.LogException(exception);
             }
