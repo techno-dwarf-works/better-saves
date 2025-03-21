@@ -6,6 +6,7 @@ using Better.Services.Runtime;
 
 namespace Better.Saves.Runtime
 {
+    [Serializable]
     public class SavesService : PocoService, ISaveSystem
     {
         private ISaveSystem _internalSystem;
